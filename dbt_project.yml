@@ -20,8 +20,13 @@ clean-targets:
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 seeds: 
+  jaffle_shop:
+    enabled: '{{ (target.name != "ci") | as_bool }}'
+    tests:
+      enabled: '{{ (target.name == "ci") | as_bool }}'
   +docs:
     node_color: '#cd7f32'
+
 
 models:
   jaffle_shop:
@@ -30,5 +35,8 @@ models:
       materialized: view
       +docs:
         node_color: 'silver'
+    tests:
+      enabled: '{{ (target.name == "ci") | as_bool }}'
+      materialized: ephemeral
     +docs:
       node_color: 'gold'
