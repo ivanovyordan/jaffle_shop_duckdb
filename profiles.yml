@@ -6,3 +6,7 @@ jaffle_shop:
       type: duckdb
       path: 'jaffle_shop.duckdb'
       threads: 24
+    ci:
+      type: duckdb
+      path: 'jaffle_shop_ci.duckdb'
+      threads: 24
